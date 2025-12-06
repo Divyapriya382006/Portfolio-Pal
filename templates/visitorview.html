@@ -1,0 +1,450 @@
+<html>
+    <head>
+        <title>Portfolio Pal</title>
+        <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+    </head>
+    <body>
+        <div class="top">
+        <h1 class="headlogo" style="margin-top: 10px; margin-left:10px;"><a href="{{url_for('index')}}">Portfolio Pal</a></h1>
+        
+           <ul class="displist">
+            <li class="displistele"><a href="#dispabt">About</a></li>
+            <li class="displistele"><a href="#dispedu">Education</a></li>
+            <li class="displistele"><a href="#dispwork">Work Experience</a></li>
+            <li class="displistele"><a href="#dispproskills">Projects & Skills</a></li>
+            <li class="displistele"><a href="#dispachint">Achievements & Interests</a></li>
+            <li class="displistele"><a href="#dispcontact">Contact Me</a></li>
+           </ul>
+        <button id="themeToggle" class="themebtn" style="float:right; margin:10px;">🌙</button></div>
+    </div>
+
+
+        <div class="disp">
+            
+                {% for d in basic %}
+                {% if d[0] and d[1] %}
+                   <p class="disphello">Hello, I'm {{ d[0] }}</p>
+                   <p class="disptitle">{{d[1]}}</p>
+                   {% endif %}
+                {% endfor %}
+
+           
+            <div id="dispabt" class="dispbox">
+              <h3>ABOUT ME</h3>
+              <br>
+              {% for d in basic%}
+              {% if d[5] %}
+              <p style="font-size: 15px;" >{{d[5]}}</p>
+              {% endif %}
+              {% endfor %}
+            </div>
+
+<div id="dispedu" >
+  <div class="dispbox">
+    <h3>EDUCATION</h3>
+    <br>
+    {% for d in education %}
+    {% if d[2] and d[3] and d[0] and d[1] and d[4] %}
+    <div style="padding:20px 20px;border-radius:30px;width: auto;height: auto;margin:20px;transition: 0.3s ease;" class="edu-entry-box">
+            <div>
+              <p class="displeft" style="font-weight: 400;">{{ d[2] }} - {{ d[3] }}</p>
+            </div>
+            <div>
+              <p class="dispright" style=" font-weight: 700;white-space: nowrap;">{{ d[0] }}</p>
+              <p class="dispright" style=" font-style: italic;white-space: nowrap;">{{ d[1] }}</p>
+              <p style="margin-top: 6px;font-size: 1rem;word-wrap: break-word;white-space: nowrap;" class="dispright">{{ d[4] }}</p>
+            </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+   </div>
+   </div>
+</div>
+
+
+<div id="dispwork" >
+  <div class="dispbox">
+    <h3>WORK EXPERIENCE</h3>
+    <br>
+    {% for d in work %}
+   {% if d[2] and d[3] and d[0] and d[1] and d[4] %}
+    <div class="edu-entry-box" style="padding:20px 20px; border-radius:30px; width: auto;height: auto; margin:20px; transition: 0.3s ease; ">
+            <div>
+              <p class="displeft" style="font-weight: 400;white-space: nowrap;">{{ d[2] }} - {{ d[3] }}</p>
+            </div>
+            <div>
+              <p class="dispright" style=" font-weight: 700;white-space: nowrap;">{{ d[0] }}</p>
+              <p class="dispright" style=" font-style: italic;white-space: nowrap;">{{ d[1] }}</p>
+              <p style="margin-top: 6px;font-size: 1rem;word-wrap: break-word;white-space: nowrap;" class="dispright">{{ d[4] }}</p>
+            </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+   </div>
+</div>
+
+<div id="dispproskills" >
+  <div class="dispbox">
+  <div class="dispboxx">
+   
+    <h3>LANGUAGES</h3>
+    <br>
+    {% for d in languages %}
+    {% if d[0] and d[1] and d[2] %}
+      <div class="langbox" >
+        <p style="font-weight: 400; font-size: 30px;">{{d[0]}}</p>
+        <p style="font-style: italic;">{{d[1]}}</p>
+        <p>{{d[2]}}</p>
+      </div>
+    {% endif %}
+    {% endfor %}
+    </div>
+    </div>
+  </div>
+
+<div class="dispboxx">
+  <div class="dispbox">
+  <h3>SKILLS</h3>
+  <br>
+
+  {% set types = ["Technical Skills", "Soft Skills", "Management Skills", "Interpersonal Skills", "Other Skills"] %}
+
+  {% for t in types %}
+    {# Collect all skills of this type #}
+    {% set skill_list = skills | selectattr(1, "equalto", t) | list %}
+
+    {% if skill_list %}
+      <div class="skill-category">
+
+        <div class="skilldispheader">
+          <p class="skill-header">{{ t }}</p>
+        </div>
+
+        <div style="border: 2px solid rgba(138, 182, 239, 0.5);" class="skill-content">
+
+          {% for d in skill_list %}
+            {% if d[0] %}
+              <div class="probdisp">
+                <p style="font-size: 30px; font-weight: 600;">{{ d[0] }}</p>
+                {% if d[2] %}
+                  <p style="font-style: italic;">{{ d[2] }}</p>
+                {% endif %}
+                {% if d[3] %}
+                  <p>{{ d[3] }}</p>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+  </div>
+</div>
+
+
+
+
+  <div class="hack-section">
+    <div class="dispbox">
+    <h2>HACKATHONS</h2>
+
+    <div class="hack-grid">
+        {% for d in hackathons %}
+        {% if d[0] %}
+        <div class="hack-card">
+
+            <div class="hack-card-default">
+
+                <div class="slider">
+                    <div class="slides">
+                        {% if d[7] %}<img src="data:image/jpeg;base64,{{ d[7]|b64encode }}">{% endif %}
+                        {% if d[8] %}<img src="data:image/jpeg;base64,{{ d[8]|b64encode }}">{% endif %}
+                        {% if d[9] %}<img src="data:image/jpeg;base64,{{ d[9]|b64encode }}">{% endif %}
+                    </div>
+                </div>
+
+                <p class="hack-title">{{ d[0] }}</p>
+                <p  class="hack-short">{{ d[6] }}</p>
+            </div>
+
+            <div class="hack-card-expanded">
+
+                <div class="slider">
+                    <div class="slides">
+                        {% if d[7] %}<img src="data:image/jpeg;base64,{{ d[7]|b64encode }}">{% endif %}
+                        {% if d[8] %}<img src="data:image/jpeg;base64,{{ d[8]|b64encode }}">{% endif %}
+                        {% if d[9] %}<img src="data:image/jpeg;base64,{{ d[9]|b64encode }}">{% endif %}
+                    </div>
+                </div>
+
+                <p  class="hack-proj">{{ d[2] }}</p>
+                <p  class="hack-desc">{{ d[3] }}</p>
+
+                {% if d[4] %}
+                <a class="hack-link" href="{{ d[4] }}">Deployment Link</a>
+                {% endif %}
+
+                {% if d[5] %}
+                <a class="hack-link" href="{{ d[5] }}">GitHub Link</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    </div>
+</div>
+
+
+
+<div class="hack-section">
+  <div class="dispbox">
+    <h2>PROJECTS</h2>
+
+    <div class="hack-grid">
+        {% for d in projects %}
+        {% if d[0] %}
+        <div class="hack-card">
+
+            <div class="hack-card-default">
+
+                <div class="sliderpro">
+                    <div class="slidespro">
+                         {% if d[6] %}<img src="data:image/jpeg;base64,{{ d[6]|b64encode }}">{% endif %}
+                        {% if d[7] %}<img src="data:image/jpeg;base64,{{ d[7]|b64encode }}">{% endif %}
+                        {% if d[8] %}<img src="data:image/jpeg;base64,{{ d[8]|b64encode }}">{% endif %}
+                        {% if d[9] %}<img src="data:image/jpeg;base64,{{ d[9]|b64encode }}">{% endif %}
+                        {% if d[10] %}<img src="data:image/jpeg;base64,{{ d[10]|b64encode }}">{% endif %}
+                    </div>
+                </div>
+
+                <p class="hack-title">{{ d[0] }}</p>
+                <p  class="hack-short">Project Period</p>
+                <p  class="hack-short">{{ d[2] }} to {{d[3]}}</p>
+            </div>
+
+            <div class="hack-card-expanded">
+
+                <div class="sliderpro">
+                    <div class="slidespro">
+                        {% if d[6] %}<img src="data:image/jpeg;base64,{{ d[6]|b64encode }}">{% endif %}
+                        {% if d[7] %}<img src="data:image/jpeg;base64,{{ d[7]|b64encode }}">{% endif %}
+                        {% if d[8] %}<img src="data:image/jpeg;base64,{{ d[8]|b64encode }}">{% endif %}
+                        {% if d[9] %}<img src="data:image/jpeg;base64,{{ d[9]|b64encode }}">{% endif %}
+                        {% if d[10] %}<img src="data:image/jpeg;base64,{{ d[10]|b64encode }}">{% endif %}
+                    </div>
+                </div>
+
+                
+                <p  class="hack-desc">{{ d[1] }}</p>
+
+                {% if d[5] %}
+                <a class="hack-link" href="{{ d[5] }}">Deployment Link</a>
+                {% endif %}
+
+                {% if d[4] %}
+                <a class="hack-link" href="{{ d[4] }}">GitHub Link</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    </div>
+</div>    
+            
+            
+            
+            
+            
+<div id="dispachint" class="dispbox">
+  <div class="hack-section">
+    <h2>CERTIFICATIONS</h2>
+
+    <div class="hack-grid">
+       {% for d in certifications %}
+{% if d[0] %}
+<div class="hack-card">
+
+    <div class="hack-card-default">
+
+        <div class="slidescert">
+            {% if d[4] %}
+            <img src="data:image/jpeg;base64,{{ d[4]|b64encode }}">
+            {% endif %}
+        </div>
+
+        <p class="hack-title">{{ d[0] }}</p>      
+        <p class="hack-short">{{ d[1] }}</p>     
+
+    </div>
+
+    <div class="hack-card-expanded">
+
+        <div class="slidescert">
+            {% if d[4] %}
+            <img src="data:image/jpeg;base64,{{ d[4]|b64encode }}">
+            {% endif %}
+        </div>
+
+        <p class="hack-desc">{{ d[2] }}</p>       
+        <p class="hack-desc">{{ d[3] }}</p>      
+
+    </div>
+
+</div>
+{% endif %}
+{% endfor %}
+
+    </div>
+</div>    
+</div>
+
+            
+<div id="dispachint" class="dispbox">
+  <div class="hack-section">
+    <h2>ACHIEVEMENTS</h2>
+
+    <div class="hack-gridawards">
+       {% for d in awards %}
+{% if d[0] %}
+<div class="hack-cardawards">
+  <div class="slidescert">
+            {% if d[2] %}
+            <img src="data:image/jpeg;base64,{{ d[2]|b64encode }}">
+            {% endif %}
+   </div>
+
+        <p class="hack-title">{{ d[0] }}</p>      
+        <p class="hack-short">{{ d[1] }}</p>     
+
+      
+
+</div>
+{% endif %}
+{% endfor %}
+
+    </div>
+</div>    
+</div>
+
+
+<div id="dispproskills" >
+  <div class="dispbox">
+  <div class="dispboxx">
+    <h3>HOBBIES</h3>
+    <br>
+    {% for d in hobbies %}
+    {% if d[0] and d[1] %}
+      <div class="langbox" >
+        <p style="font-weight: 400; font-size: 30px;">{{d[0]}}</p>
+        <p style="font-style: italic;">{{d[1]}}</p>
+      </div>
+    {% endif %}
+    {% endfor %}
+    </div>
+  </div>
+
+
+            
+            
+<div id="dispachint" class="dispbox">
+  <div class="hack-section">
+    <h2>CLUBS</h2>
+
+    <div class="clubs-grid">
+
+      {% set lastclub = "" %}
+{% for d in clubs %}
+  {% if d[0] != lastclub %}
+    
+    {% set lastclub = d[0] %}
+
+    <div class="club-card">
+
+      <div class="club-card-default">
+        <p class="hack-title">{{ d[0] }}</p>
+        <p class="hack-short">{{ d[1] }}</p>
+        <p class="hack-short">{{ d[2] }} to {{ d[3] }}</p>
+        <p class="hack-short">{{ d[4] }}</p>
+      </div>
+
+      <div class="club-card-expanded">
+        {% for f in clubwork if f[0] == d[0] %}
+        <div class="clubbox">
+          <p style="font-weight: 400; font-size: 30px;">{{ f[1] }}</p>
+          <p style="font-style: italic;">{{ f[2] }}</p>
+          <p class="hack-short">{{ f[4] }} to {{ f[5] }}</p>
+          <p class="hack-short">{{ f[3] }}</p>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+
+  {% endif %}
+{% endfor %}
+
+
+    </div>  
+
+  </div>
+</div>  
+
+
+
+
+
+<div id="dispcontact" class="dispbox">
+<h3 class="disphello">GET IN TOUCH</h3>
+<p class="disptitlenew">I’d love to connect! Whether it’s a project, opportunity, or collaboration...feel free to reach out!</p>
+<div class="logos">
+{% for d in basic %}
+  {% if d[2] %}
+<a href="{{ d[2] }}">
+    <img src="{{ url_for('static', filename='images/phone.png') }}">
+</a>
+  {% endif %}
+
+  {% if d[3] %}
+<a href="{{ d[3] }}">
+    <img src="{{ url_for('static', filename='images/gmail.png') }}">
+</a>
+  {% endif %}
+
+  {% if d[4] %}
+<a href="{{ d[4] }}">
+    <img src="{{ url_for('static', filename='images/linkedin.jpg') }}">
+</a>
+  {% endif %}
+
+  {% if d[8] %}
+<a href="{{ d[8] }}">
+    <img src="{{ url_for('static', filename='images/github.png') }}">
+</a>
+  {% endif %}
+
+  {% if d[7] %}
+<a href="{{ d[7] }}">
+    <img src="{{ url_for('static', filename='images/insta.jpg') }}">
+</a>
+  {% endif %}
+
+  {% if d[6] %}
+<a href="{{ d[6] }}">
+    <img src="{{ url_for('static', filename='images/website.png') }}">
+</a>
+{% endif %}
+{% endfor %}
+</div>
+</div>
+
+            
+
+
+        </div>
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    </body>
+</html>

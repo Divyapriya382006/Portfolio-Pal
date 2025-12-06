@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Portfolio Pal</title>
+        <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+    </head>
+
+    <body><div class="top">
+        <h1 class="headlogo" style="margin-top: 10px; margin-left:10px;"><a href="{{url_for('index')}}">Portfolio Pal</a></h1>
+        <button id="themeToggle" class="themebtn" style="float:right; margin:10px;">🌙</button></div>
+    </div>
+         <div style="margin-top:70px;"></div>
+        <form action="{{ url_for('public_portfolio') }}" method="POST">
+
+            
+                <br>
+                <p style="font-size: 50px; text-align: center;font-family: cursive;">Looking to check out another portfolio? Just use the portfolio owner’s username and Visitor Key to get access</p>
+                <br>
+              
+                    <br>
+                     <div class="introbody">
+                    <div class="introbodybor">
+                <p>Portfolio Owner's Username</p>
+            <input type="text" name="username" placeholder=" User Name" required>
+            <p>Portfolio Owner's Visitor Key</p>
+            <input type="text" name="visitorkey" placeholder="Visitor Key" required>
+            <br>
+            <button type="submit" class="btn">Unlock Portfolio</button>
+            </div></div>
+            <p>{% if error %} {{error}} {% endif %} </p>
+            <br>
+            <br>
+</form>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    </body>
+</html>

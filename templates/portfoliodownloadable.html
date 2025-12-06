@@ -1,0 +1,220 @@
+<html>
+<head>
+    <title>Portfolio Pal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', _external=True) }}">
+    <style>
+        /* Optional: Add PDF-friendly CSS tweaks */
+        body { font-family: Arial, sans-serif; }
+        .top, .dispbox, .hack-card, .club-card { page-break-inside: avoid; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+    {% if basic and basic[0][0] and basic[0][1] %}
+    <h1>Hello, I'm {{ basic[0][0] }}</h1>
+    <h2>{{ basic[0][1] }}</h2>
+    {% endif %}
+
+    {% if basic and basic[0][5] %}
+    <section>
+        <h3>ABOUT ME</h3>
+        <p>{{ basic[0][5] }}</p>
+    </section>
+    {% endif %}
+
+    {% if education %}
+    <section>
+        <h3>EDUCATION</h3>
+        {% for d in education %}
+            {% if d[0] and d[1] and d[2] and d[3] and d[4] %}
+            <div>
+                <p>{{ d[2] }} - {{ d[3] }}</p>
+                <p>{{ d[0] }} ({{ d[1] }})</p>
+                <p>{{ d[4] }}</p>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if work %}
+    <section>
+        <h3>WORK EXPERIENCE</h3>
+        {% for d in work %}
+            {% if d[0] and d[1] and d[2] and d[3] and d[4] %}
+            <div>
+                <p>{{ d[2] }} - {{ d[3] }}</p>
+                <p>{{ d[0] }} ({{ d[1] }})</p>
+                <p>{{ d[4] }}</p>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if languages %}
+    <section>
+        <h3>LANGUAGES</h3>
+        {% for d in languages %}
+            {% if d[0] and d[1] and d[2] %}
+            <div>
+                <p>{{ d[0] }}</p>
+                <p><em>{{ d[1] }}</em></p>
+                <p>{{ d[2] }}</p>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if skills %}
+    <section>
+        <h3>SKILLS</h3>
+        {% set types = ["Technical Skills", "Soft Skills", "Management Skills", "Interpersonal Skills", "Other Skills"] %}
+        {% for t in types %}
+            {% set skill_list = skills | selectattr(1, "equalto", t) | list %}
+            {% if skill_list %}
+            <h4>{{ t }}</h4>
+            <ul>
+                {% for d in skill_list %}
+                    {% if d[0] %}
+                    <li>
+                        <strong>{{ d[0] }}</strong>
+                        {% if d[2] %} - <em>{{ d[2] }}</em>{% endif %}
+                        {% if d[3] %} - {{ d[3] }}{% endif %}
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if hackathons %}
+    <section>
+        <h3>HACKATHONS</h3>
+        {% for d in hackathons %}
+            {% if d[0] %}
+            <div>
+                <h4>{{ d[0] }}</h4>
+                {% for i in [7,8,9] %}
+                    {% if d[i] %}
+                        <img src="data:image/jpeg;base64,{{ d[i]|b64encode }}">
+                    {% endif %}
+                {% endfor %}
+                <p>{{ d[6] }}</p>
+                <p>{{ d[2] }} - {{ d[3] }}</p>
+                {% if d[4] %}<p>Deployment: {{ d[4] }}</p>{% endif %}
+                {% if d[5] %}<p>GitHub: {{ d[5] }}</p>{% endif %}
+            </div>
+            {% endif %}
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if projects %}
+    <section>
+        <h3>PROJECTS</h3>
+        {% for d in projects %}
+            {% if d[0] %}
+            <div>
+                <h4>{{ d[0] }}</h4>
+                {% for i in range(6,11) %}
+                    {% if d[i] %}
+                        <img src="data:image/jpeg;base64,{{ d[i]|b64encode }}">
+                    {% endif %}
+                {% endfor %}
+                <p>{{ d[1] }}</p>
+                <p>{{ d[2] }} - {{ d[3] }}</p>
+                {% if d[5] %}<p>Deployment: {{ d[5] }}</p>{% endif %}
+                {% if d[4] %}<p>GitHub: {{ d[4] }}</p>{% endif %}
+            </div>
+            {% endif %}
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if certifications %}
+    <section>
+        <h3>CERTIFICATIONS</h3>
+        {% for d in certifications %}
+            {% if d[0] %}
+            <div>
+                {% if d[4] %}<img src="data:image/jpeg;base64,{{ d[4]|b64encode }}">{% endif %}
+                <p>{{ d[0] }}</p>
+                <p>{{ d[1] }}</p>
+                <p>{{ d[2] }}</p>
+                <p>{{ d[3] }}</p>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if awards %}
+    <section>
+        <h3>ACHIEVEMENTS</h3>
+        {% for d in awards %}
+            {% if d[0] %}
+            <div>
+                {% if d[2] %}<img src="data:image/jpeg;base64,{{ d[2]|b64encode }}">{% endif %}
+                <p>{{ d[0] }}</p>
+                <p>{{ d[1] }}</p>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if hobbies %}
+    <section>
+        <h3>HOBBIES</h3>
+        {% for d in hobbies %}
+            {% if d[0] and d[1] %}
+            <p>{{ d[0] }} - <em>{{ d[1] }}</em></p>
+            {% endif %}
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if clubs %}
+    <section>
+        <h3>CLUBS</h3>
+        {% set lastclub = "" %}
+        {% for d in clubs %}
+            {% if d[0] != lastclub %}
+                {% set lastclub = d[0] %}
+                <div>
+                    <h4>{{ d[0] }}</h4>
+                    <p>{{ d[1] }}</p>
+                    <p>{{ d[2] }} - {{ d[3] }}</p>
+                    <p>{{ d[4] }}</p>
+                    {% for f in clubwork if f[0] == d[0] %}
+                        <div>
+                            <p>{{ f[1] }} - <em>{{ f[2] }}</em></p>
+                            <p>{{ f[4] }} - {{ f[5] }}</p>
+                            <p>{{ f[3] }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </section>
+    {% endif %}
+
+    {% if basic %}
+    <section>
+        <h3>CONTACT ME</h3>
+        {% for d in basic %}
+            {% if d[2] %}<p>Phone: {{ d[2] }}</p>{% endif %}
+            {% if d[3] %}<p>Email: {{ d[3] }}</p>{% endif %}
+            {% if d[4] %}<p>LinkedIn: {{ d[4] }}</p>{% endif %}
+            {% if d[7] %}<p>Instagram: {{ d[7] }}</p>{% endif %}
+            {% if d[8] %}<p>GitHub: {{ d[8] }}</p>{% endif %}
+            {% if d[6] %}<p>Website: {{ d[6] }}</p>{% endif %}
+        {% endfor %}
+    </section>
+    {% endif %}
+</body>
+</html>

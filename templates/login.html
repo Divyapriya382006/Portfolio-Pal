@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Portfolio Maker</title>
+       <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+    </head>
+    
+
+    <body ><div class="top">
+        <h1 class="headlogo" style="margin-top: 10px; margin-left:10px;"> PORTFOLIO PAL</h1>
+     <button id="themeToggle" class="themebtn" style="float:right; margin:10px;">🌙</button></div>
+        <br>
+<div style="margin-top:120px;"></div>
+        <div class="introbody">
+        <h2 class="logsig">Login</h2><br>
+        <div class="introbodybor">
+        <form method="POST" action="{{url_for('login')}}">
+            <p>Username</p>
+            <input type="text" name="username" placeholder="Username"  required>
+            <p>Password</p>
+            <input type="password" name="password" placeholder="Password" required><br>
+            <button type="submit" class="btn">Submit</button>
+            
+        </form>
+        <p>{% if error %} {{error}} {% endif %} </p>
+               </div><br>
+        <p>Don't have an account?
+        <a href="{{url_for('signup')}}">Signup!</a></p>
+       </div>
+
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+
+    </body>
+</html>

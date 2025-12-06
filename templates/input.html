@@ -1,0 +1,330 @@
+<html>
+    <head>
+        <title>Portfolio Pal</title>
+        <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+    </head>
+    <body><div class="top">
+        <h1 class="headlogo" style="margin-top: 10px; margin-left:10px;"><a href="{{url_for('index')}}">Portfolio Pal</a></h1>
+        
+        
+        <button id="themeToggle" class="themebtn" style="float:right; margin:10px;">🌙</button></div>
+    </div>
+    <div style="margin-top:210px;"></div>
+        <div class="container">
+        <form action="{{ url_for('input_data') }}" method="POST" enctype="multipart/form-data">
+
+            <div class="basicinfo"><h3>Personal Information</h3>
+                <br>
+                <p>Name</p>
+            <input type="text" name="name" placeholder="Name" required>
+            <p>Profesional Title</p>
+            <input type="text" name="title" placeholder="Profesional Title" required>
+            <p>Contact Number</p>
+            <input type="text" name="phone" placeholder="Contact Number">
+            <p>Email</p>
+            <input type="email" name="email" placeholder="Email">
+            <p>LinkedIn Profile</p>
+            <input type="url" name="linkedin" placeholder="LinkedIn Profile">
+            <p>GitHub</p>
+            <input type="url" name="github" placeholder="GitHub">
+            <p>Instagram</p>
+            <input type="url" name="insta" placeholder="Instagram">
+            <p>Website</p>
+            <input type="url" name="website" placeholder="Website">
+            <p>Profile</p>
+            <input type="text" name="profile" placeholder="Profile"  ><br>
+            
+            <br>
+           </div>
+            
+            <!-- <button onclick="showSection('work-container')">Add Work Experience</button> -->
+            
+        
+        
+        <div id="education-container" class="education-container" style="display:   none;">
+            
+        <div class="edu-entry">
+            <h3>EDUCATION DETAILS</h3>
+            <br>
+            <p>Degree</p>
+    <input type="text" name="degree[]" placeholder="Degree (e.g., B.Tech)" >
+    <p>Institution</p>
+    <input type="text" name="school[]" placeholder="College / School" >
+    <p>Admission Year</p>
+    <input type="text" name="fromyear[]" placeholder="Admission Year(MM/YYYY)">
+    <p>Graduation Year</p>
+    <input type="text" name="toyear[]" placeholder="Graduation Year(MM/YYYY)" >
+    <p>Description</p>
+    <textarea name="description[]" placeholder="Description"></textarea><br>
+    <button class="add-btn" data-section="education-container" type="button" class="btn">Add Another</button>
+     
+        </div>
+        <br>
+
+<!-- <button type="submit" class="btn">Save</button> -->
+</div>
+
+
+        <div id="work-container" class="work-container" style="display: none;">
+            <div class="workentry">
+                <h3>WORK EXPERIENCE</h3><br>
+                <p>Job Title</p>
+                 <input type="text" name="jobtitle[]" placeholder="Job Title" >
+                 <p>Company</p>
+                 <input type="text" name="company[]" placeholder="Company" >
+                 <p>From</p>
+                 <input type="text" name="jobfromyear[]" placeholder="MM/YYYY" >
+                 <p>To/Current</p>
+                 <input type="text" name="jobtoyear[]" placeholder="MM/YYYY" >
+                 <p>Description</p>
+                 <textarea name="jobdescription[]" placeholder="Description"></textarea>
+                 <br>
+                 <button class="add-btn" data-section="work-container" type="button" class="btn">Add Another</button>
+                 <!-- <button type="button" class="btn">Save</button> -->
+            </div>
+            </div>
+
+            <div id="langcontainer" style="display: none;">
+                <div class="langentry">
+                    <h3>LANGUAGE</h3><br>
+                    <p>Language</p>
+                    <input type="text" name="language[]" placeholder="Language">
+                    <p>Fluency</p>
+                    <select name="fluency[]">
+                        <option value="elementary">Elementary Proficiency</option>
+                        <option value="limited">Limited Working Proficiency</option>
+                        <option value="professional">Professional Working Proficiency</option>
+                        <option value="fullprofessional">Full Professional Proficiency</option>
+                        <option value="native">Native or Bilingual Proficiency</option>
+                    </select>
+                    <p>Language Description</p>
+                    <input type="text" name="langdescription[]" Placeholder="Language Description">
+                    <br>
+                 <button class="add-btn"  data-section="langcontainer" type="button" class="btn">Add Another</button>
+                 <!-- <button type="button" class="btn">Save</button> -->
+                </div>
+            </div>
+
+            <div id="skillcontainer" style="display: None;">
+                <div class="skillentry">
+                    <h3>SKILL</h3><br>
+                    <p>Skill</p>
+                    <input type="text" name="skill[]" placeholder="Skill">
+                    <p>Skill type</p>
+                    <select name="skilltype[]">
+                        <option value="Technical Skills">Technical Skill</option>
+                        <option value="Soft Skills">Soft Skill</option>
+                        <option value="Management Skills">Management Skill</option>
+                        <option value="Interpersonal Skills">Interpersonal Skill</option>
+                        <option value="Other Skills">Other</option>
+                    </select>
+                    <p>Fluency</p>
+                    <select name="skill_level[]">
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                        <option value="proficient">Proficient</option>
+                        <option value="expert">Expert</option>
+                    </select>
+
+                    <p>Skill Description</p>
+                    <input type="text" name="skilldescription[]" Placeholder="Skill Description">
+                    <br>
+                 <button class="add-btn" data-section="skillcontainer"  type="button" class="btn">Add Another</button>
+                 <!-- <button type="button" class="btn">Save</button> -->
+                </div>
+            </div>
+
+            <div id="hobbycontainer" style="display: None;">
+                <div class="hobbyentry">
+                    <h3>HOBBY</h3><br>
+                    <p>Hobby</p>
+                    <input type="text" name="hobby[]" placeholder="Hobby">
+                    <p>Hobby Description</p>
+                    <input type="text" name="hobbydescription[]" Placeholder="Hobby Description">
+                    <br>
+                 <button class="add-btn"  data-section="hobbycontainer" type="button" class="btn">Add Another</button>
+                 <!-- <button type="button" class="btn">Save</button> -->
+                </div>
+        </div>
+
+<div id="Certifications-container" style="display:none;">
+    <div class="certificationsentry">
+        <h3>CERTIFICATIONS</h3><br>
+        <p>Certification Title</p>
+        <input name="certification[]" type="text" >
+        <p>Institution</p>
+        <input type="text" name="certschool[]">
+        <p>Certification Date</p>
+        <input type="date" name="certificationdate[]">
+        <p>Description</p>
+        <input type="text" name="certificationdescription[]">
+        <p>Certificate Picture</p>
+        <input type="file" name="cimagepath[]" id="image" accept="image/*" >
+    
+        <br>
+        <button class="add-btn"  data-section="Certifications-container" type="button" class="btn">Add Another</button>
+        <!-- <button type="button" class="btn">Save</button> -->
+    </div>
+</div>
+
+<div id="awards-container" style="display:None;">
+    <div class="awardsentry">
+        <h3>AWARDS/ACHIEVEMENTS</h3><br>
+        <p>Award/Achievement Title</p>
+        <input name="award[]" type="text" placeholder="Award/Achievement Name">
+        <p>Description</p>
+        <input name="awarddescription[]" placeholder="Description" type="text">
+        <p>Upload images(optional)</p>
+        <input type="file" name="awardpic[]" id="image" accept="image/*">
+        <br>
+        <button class="add-btn"   data-section="awards-container" type="button" class="btn">Add Another</button>
+        <!-- <button type="button" class="btn">Save</button> -->
+    </div>
+</div>
+
+<div id="hackathons-container" style="display:None;">
+    <div class="hackathonsentry">
+        <h3>HACKATHON EXPERIENCE</h3><br>
+        <p>Hackathon Name</p>
+        <input type="text" name="hackname[]" placeholder="Hacakthon name">
+        <p>Hacakathon Organized by</p>
+        <input type="text" name="hackorgname[]">
+        <p>Hackathon Project Title</p>
+        <input type="text" name="hackproname[]">
+        <p>Hackathon Project Description</p>
+        <input type="text" name="hackprodescription[]">
+        <p>Hackathon Project Deployment Link</p>
+        <input type="url" name="hackprodeplink[]">
+        <p>Hackathon Project GitHub Link</p>
+        <input type="url" name="hackyprogitlink[]">
+        <p>Description</p>
+        <input type="text" name="hackydesc[]">
+        <!-- <button class="btn" onclick="showSection('imguploadcontainer')">Upload Images</button> -->
+<input type="file" name="hackypic[]" id="image" accept="image/*">
+<input type="file" name="hackypic2[]" id="image" accept="image/*">
+<input type="file" name="hackypic3[]" id="image" accept="image/*">
+
+
+        <br>
+        <button class="add-btn"  data-section="hackathons-container" type="button" class="btn">Add Another</button>
+        <!-- <button type="button" class="btn">Save</button> -->
+    </div>
+</div>
+
+<!-- <div id="imguploadcontainer" style="display:None;">
+<div class="imgentry">
+    <input type="file" name="img">
+    <button id="add-imgs-btn" type="button" class="btn">Add Another Image</button>
+    <button type="submit" class="btn">Uplaod</button>
+    <br>
+    
+    
+</div>
+</div> -->
+
+<div id="projects-container" style="display:none;">
+    <div class="projectsentry">
+        <h3>PROJECTS</h3><br>
+        <p>Project Title</p>
+        <input type="text" name="proname[]">
+        <p>Project Description</p>
+        <input type="text" name="prodesc[]">
+        <p>Project Start Date</p>
+        <input type="text" name="profromdate[]" placeholder="MM/YYYY">
+        <p>Project Finish Date</p>
+        <input type="text" name="protodate[]" placeholder="MM/YYYY">
+        <p>Project GitHub Link</p>
+        <input type="url" name="progitlink[]">
+        <p>Project Deployment Link</p>
+        <input type="url" name="prodeplink[]">
+        <p>Upload pics</p>
+        <input type="file" name="proimg1[]" accept="image/*">
+        <input type="file" name="proimg2[]" accept="image/*">
+        <input type="file" name="proimg3[]" accept="image/*">
+        <input type="file" name="proimg4[]" accept="image/*">
+        <input type="file" name="proimg5[]" accept="image/*">
+       
+        
+
+        <br>
+        <button class="add-btn"  data-section="projects-container" type="button" class="btn">Add Another</button>
+        <!-- <button type="button" class="btn">Save</button> -->
+    </div>
+</div>
+
+<div id="clubs-container" style="display:None;">
+    <div class="clubsentry">
+        <h3>CLUBS</h3><br>
+        <p>Club Name</p>
+        <input type="text" name="clubname[]">
+        <p>Position</p>
+        <input type="text" name="clubpos[]">
+        <p>From Date</p>
+        <input type="text" name="clubfromdate[]" placeholder="MM/YYYY">
+        <p>To Date</p>
+        <input type="text" name="clubtodate[]" placeholder="MM/YYYY">
+        <p>Description</p>
+        <input type="text" name="clubdesc[]">
+        <br>
+        <button id="addclubproject" type="button" class="btn" onclick="showSection('hiddenclubs')">Add a club project</button>
+        
+        <br>
+        <button class="add-btn"  data-section="clubs-container" type="button" class="btn">Add Another</button>
+        <!-- <button type="button" class="btn">Save</button> -->
+    </div>
+</div>
+
+<div id="hiddenclubs" style="display: None;">
+    <div class="clubworkentry"><h3>CLUB PROJECT</h3><br>
+        <p>Club Name</p>
+        <input type="text" name="clubnameforwork[]" >
+           <p>Club Project Title</p>
+           <input type="text" name="clubproname[]">
+           <p>Solo Project or Group Project</p>
+           <select name="clubsologrp[]">
+            <option value="solo">Solo</option>
+            <option value="colab">Collab</option>
+            <option value="otherclub">Other</option>
+           </select>
+           <p>Project Start Date</p>
+           <input type="text" name="clubprofromdate[]" placeholder="MM/YYYY">
+           <p>Project To Date</p>
+           <input type="text" name="clubprotodate[]"placeholder="MM/YYYY">
+           <p>Description</p>
+           <input type="text" name="clubworkdesc[]" >
+           <br>
+        
+         <button class="add-btn"  data-section="hiddenclubs" type="button" class="btn">Add Another</button>
+        <!-- <button type="button" class="btn">Save</button> -->
+        </div></div>
+
+
+
+            <div class="footer-buttons">
+            <button type="button" class="btn" onclick="showSection('education-container')">Add Education</button>
+            <button type="button" class="btn" onclick="showSection('work-container')">Add Work Experience</button>
+            <button type="button" class="btn" onclick="showSection('langcontainer')">Add Language</button>
+            <button type="button" class="btn" onclick="showSection('skillcontainer')">Add Skill</button>
+            <button type="button" class="btn" onclick="showSection('hobbycontainer')">Add Hobby</button>
+            <br>
+            <button type="button" class="btn" onclick="showSection('Certifications-container')">Add Certification</button>
+            <button type="button" class="btn" onclick="showSection('projects-container')">Add Project</button>
+            <button type="button" class="btn" onclick="showSection('hackathons-container')">Add Hackathon Experience</button>
+            <button type="button" class="btn" onclick="showSection('clubs-container')">Add Club</button>
+            <button type="button" class="btn" onclick="showSection('awards-container')">Add Awards/Achievements</button>
+            <br>
+            <br>
+            <br>
+            <button type="submit"  class="btn" style="align-items: center; justify-content: center;" >Save Details</button>
+        </div>
+
+        <br>
+        <br>
+
+</form>
+</div>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    </body>
+</html>
