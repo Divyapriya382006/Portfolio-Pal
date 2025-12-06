@@ -416,7 +416,6 @@ body.dark .edu-entry-box:hover{
 
 p{
     font-size:15px;
-    font-family: cursive;
 }
 
 .dispedu{
@@ -1030,4 +1029,5 @@ bpdy.dark .delete-label {
 width:auto;
 height:400px;
 justify-content: center;
+
 }
