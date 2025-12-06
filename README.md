@@ -44,21 +44,39 @@ project/
 │
 ├── static/
 │   ├── css/
+│   │   └── style.css
+│   │
 │   ├── images/
-│   ├── js/
-│   └── uploads/
+│   │   ├── da1.png
+│   │   ├── da2.png
+│   │   ├── da3.png
+│   │   ├── da4.png
+│   │   ├── da5.png
+│   │   ├── da6.png
+│   │   ├── da7.png
+│   │   ├── github.png
+│   │   ├── gmail.png
+│   │   ├── insta.jpg
+│   │   ├── linkedin.jpg
+│   │   ├── phone.png
+│   │   └── website.png
+│   │
+│   └── js/
+│       └── main.js
 │
 ├── templates/
 │   ├── index.html
+│   ├── input.html
 │   ├── login.html
-│   ├── register.html
 │   ├── portfolio.html
-│   ├── public_portfolio.html
-│   └── input_data.html
+│   ├── portfoliodownloadable.html
+│   ├── signup.html
+│   ├── visitor.html
+│   └── visitorview.html
 │
 ├── app.py
-├── database.db
-└── README.md
+└── users.db
+
 
 Usage
 
