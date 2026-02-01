@@ -1,9 +1,9 @@
-# PortfolioPad
+# PortfolioPal
 
 ## 📌 Project Overview
-**PortfolioPad** is a web application designed to help users create a personal portfolio website **without needing to know coding**.
+**PortfolioPal** is a web application designed to help users create a personal portfolio website **without needing to know coding**.
 
-Users simply enter their details into the platform, and PortfolioPad dynamically generates a complete portfolio website for them. The project focuses on accessibility, security, and ease of use, making portfolio creation simple and efficient.
+Users simply enter their details into the platform, and PortfolioPal dynamically generates a complete portfolio website for them. The project focuses on accessibility, security, and ease of use, making portfolio creation simple and efficient.
 
 ---
 
